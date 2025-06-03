@@ -1,12 +1,14 @@
 ﻿using Domain.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi29.Services.IServices;
 using WebApi29.Services.Services;
 
 namespace WebApi29.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
 
     public class RolController : ControllerBase
     {
@@ -29,7 +31,7 @@ namespace WebApi29.Controllers
             return Ok(await _rolServices.RolesById(id));
         }
 
-        [HttpPost]
+        [HttpPost]  
         public async Task<IActionResult> Crear(RolRequest request)
         {
             var response = await _rolServices.Crear(request);
@@ -37,7 +39,7 @@ namespace WebApi29.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] RolRequest request)
+        public async Task<IActionResult> Update(int id, RolRequest request)
         {
             var response = await _rolServices.Actualizar(id, request);
             return Ok(response);

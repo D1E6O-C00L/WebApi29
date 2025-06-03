@@ -21,4 +21,4 @@ namespace WebApi29.Services.IServices
         public Task<Response<string>> Eliminar(int id);
 
     }
-}
+}   
